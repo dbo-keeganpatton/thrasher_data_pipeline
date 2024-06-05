@@ -1,9 +1,12 @@
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+from sqlalchemy import insert
 from bs4 import BeautifulSoup 
 import requests
+import pandas as pd
 import time
+import re
 
 
 # Selenium Automations
@@ -19,6 +22,12 @@ page_height = "return document.body.scrollHeight"
 last_height = page_height
 item_target_count = 10
 counter = 0
+
+
+# The script will loop through articles...
+# Creating dicts of questions and answers...
+# Then append each dict in this list...
+articles_data = []
 
 
 # Thrasher Articles Site is an infinite scroll...
@@ -53,48 +62,42 @@ while counter < item_target_count:
 
     # div.article-text
     # div.body-text
-    # all questions are in <strong> tag or <em> tag
-    # answers are in <br> tag
+    # all questions are in <strong> tag or <em> tag...
+    # answers are set between following <br> tags...
+    title = soup.find('h3') 
+        
 
     questions = soup.find_all(['strong', 'em'])
-    group = []
-    
     
     for question in questions:
 
-        import re 
         # This is to strip the tags for questions...
         # Because I could not figure out how to do it otherwise...
-        
         remove_question_tags = re.compile('<.*?>')
-
-        question_text = re.sub(
-                remove_question_tags,
-                "",
-                question.text
-        ) 
-
-        print(question_text)
+        question_text = re.sub(remove_question_tags, "", question.text) 
+        
+        
         next_br = question.find_next('br')
-        
         answer = next_br.next_sibling
-        
-#        if isinstance(answer, str):
-#            
-#            group.append((question, answer))
-#
-#        
-#    
-#    print(group)
-    break
-    driver.back()
-    counter += 1
-     
+
+        # Make sure that the following sibling is actually text...
+        # Then create dicts stored in our list for later...
+        if isinstance(answer, str):
+            
+            articles_data.append({
+                "title" : title,
+                "question" : question_text,
+                "answer" : answer
+            })
+
+    
 
 
 
 
-        
-           
-
-
+#####################
+# Data Prep for ORM #
+#####################
+df = pd.DataFrame(articles_data)
+print(df.head())
+print(df.columns)
