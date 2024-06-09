@@ -20,7 +20,7 @@ Base = declarative_base()
 class interviews(Base):
     __tablename__ = 'interviews'
 
-    proName = Column(String, primary_key=True)
+    title = Column(String, primary_key=True)
     question = Column(String)
     answer = Column(String)
 
