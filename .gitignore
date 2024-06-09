@@ -1,1 +1,4 @@
 secrets/
+old/
+__pycache__/
+
