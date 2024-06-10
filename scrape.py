@@ -1,8 +1,10 @@
 from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException, TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
-from site_utils import scroll_page, scrape_data # UDF Imports
 from selenium import webdriver
 import pandas as pd
+import sys
+sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/')
+from site_utils import scroll_page, scrape_data # UDF Imports
 
 
 #####################
