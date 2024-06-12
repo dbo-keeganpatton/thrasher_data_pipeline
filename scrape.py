@@ -18,9 +18,9 @@ actions = ActionChains(driver)
 
 
 # Resusable Vars
-scroll_page_cmd = "window.scrollTo(0, document.body.scrollHeight);"
+scroll_page_cmd = "window.scrollTo(0, document.body.scrollHeight/ 5);"
 page_height = "return document.body.scrollHeight"
-item_target_count = 10
+item_target_count = 20
 counter = 0
 
 
@@ -66,7 +66,6 @@ while counter < item_target_count:
                     
                     if counter >= item_target_count:
                         break
-
             # Not really sure why I two try/excepts work...
             # But it works and I was running into insurmountable stale elements...
             except (StaleElementReferenceException, NoSuchElementException):
@@ -74,7 +73,7 @@ while counter < item_target_count:
 
     except TimeoutException:
             continue
-
+            
 
 
 #####################
@@ -82,3 +81,4 @@ while counter < item_target_count:
 #####################
 df = pd.DataFrame(articles_data)
 df.to_csv('./data/data.csv')
+driver.close()

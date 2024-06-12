@@ -1,6 +1,7 @@
 import pandas as pd
 import re as re
 import sys
+import os
 pd.set_option('display.max_columns', 500)
 sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/')
 
@@ -11,8 +12,8 @@ def transform_func():
     df = df.drop(['Unnamed: 0'], axis=1)
 
 
-# I did not address the html tags that made it through'
-# Extraction... this is to resolve that.
+    # I did not address the html tags that made it through'
+    # Extraction... this is to resolve that.
     remove_tags = re.compile('<.*?>')
     def clean_title(text):
         text = re.sub(remove_tags, "", text)
@@ -24,7 +25,7 @@ def transform_func():
     df['title'] = df['title'].apply(clean_title)
 
 
-# dtypes mapping
+    # dtypes mapping
     dtype_dict = {
         'title' : str,
         'question' : str,
@@ -33,8 +34,8 @@ def transform_func():
 
     df = df.astype(dtype=dtype_dict)
 
-# There are escape chars throughout the text...
-# Just need to get rid of those...
+    # There are escape chars throughout the text...
+    # Just need to get rid of those...
     def remove_escape(text):
         text = text.replace('\n', '')
         return text
@@ -44,5 +45,13 @@ def transform_func():
     df['answer'] = df['answer'].apply(remove_escape)
 
 
-# Stage for ORM
+    # Stage for ORM
     df.to_csv('./data/cleaned_data.csv')
+    
+    try:
+        if os.path.exists('./data/data.csv'): 
+            os.remove('./data/data.csv')
+    except FileNotFoundError as e:
+        print(f'{e}')
+        pass
+

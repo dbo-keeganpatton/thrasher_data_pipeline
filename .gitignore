@@ -1,4 +1,7 @@
 secrets/
 old/
 __pycache__/
-
+*.db
+logs/
+target/
+dbt_packages/

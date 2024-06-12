@@ -14,7 +14,7 @@ def get_web_elements(driver):
     :Inputs: a selenium Web Driver
     """ 
     
-    return WebDriverWait(driver, 10).until(
+    return WebDriverWait(driver, 2).until(
             EC.presence_of_all_elements_located(
                 (By.CSS_SELECTOR, 'a.post-title-link')
         )
@@ -33,7 +33,7 @@ def scroll_page(driver, page_height,  scroll_page_cmd):
     """
 
     driver.execute_script(scroll_page_cmd)
-    time.sleep(5)
+    time.sleep(2)
 
     last_height = page_height
     new_height = driver.execute_script(page_height)

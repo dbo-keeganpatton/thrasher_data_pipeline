@@ -2,7 +2,7 @@ import pandas as pd
 from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy.orm import sessionmaker
 import json
-
+import os
 
 def load_func():
     df = pd.read_csv('./data/cleaned_data.csv')
@@ -52,4 +52,12 @@ def load_func():
 
     finally:
         session.close()
-
+    
+    
+    try:
+        if os.path.exists('./data/cleaned_data.csv'):
+            os.remove('./data/cleaned_data.csv')
+    
+    except FileNotFoundError as e:
+        print(f'{e}')
+        pass
