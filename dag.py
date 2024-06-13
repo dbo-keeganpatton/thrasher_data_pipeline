@@ -1,6 +1,6 @@
 # Repo loc
 import sys
-sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/')
+sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/airflow_scripts/')
 
 # DAG step dependecies
 from transform import transform_func 
@@ -18,7 +18,7 @@ import os
 #   Files   #
 #############
 
-file_location = '/home/eyelady/projects/python_projects/thrasher_site/'
+file_location = '/home/eyelady/projects/python_projects/thrasher_site/airflow_scripts/'
 site_utils = os.path.join(file_location, 'site_utils')
 extract_file = os.path.join(file_location, 'scrape.py')
 
@@ -61,8 +61,12 @@ def create_table():
 def load():
     load_func()
 
+@task.bash
+def dbt_run():
+    return "pwd && cd ${AIRFLOW_HOME} && cd projects/python_projects/thrasher_site/interviews/ && dbt run"
+
+
 ############
 #   Flow   #
 ############
-
-extract() >> transform() >> create_table() >> load()
+extract() >> transform() >> create_table() >> load() >> dbt_run()

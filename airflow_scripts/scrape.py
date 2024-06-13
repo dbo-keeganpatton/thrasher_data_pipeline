@@ -72,7 +72,7 @@ while counter < item_target_count:
                     continue  
 
     except TimeoutException:
-            continue
+           break 
             
 
 

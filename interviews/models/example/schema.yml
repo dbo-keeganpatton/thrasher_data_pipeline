@@ -2,20 +2,22 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: lower.sql 
+    description: "convert all text to lowercase"
     columns:
-      - name: id
-        description: "The primary key for this table"
-        data_tests:
-          - unique
-          - not_null
+      - name: title
+        description: "interview title"
+      - name: question
+        description: "interview question"
+      - name: answer
+        description: "interview answer"
 
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
+  - name: clean.sql
+    description: "remove punctuation and instances of single s"
     columns:
-      - name: id
-        description: "The primary key for this table"
-        data_tests:
-          - unique
-          - not_null
+      - name: title
+        description: "interview title"
+      - name: question
+        description: "interview question"
+      - name: answer
+        description: "interview answer"
