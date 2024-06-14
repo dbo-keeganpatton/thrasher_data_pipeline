@@ -1,8 +1,8 @@
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-
 
 def pre_process_text(text):
     
@@ -28,6 +28,6 @@ def get_sentiment(text):
     analyzer = SentimentIntensityAnalyzer()
 
     scores = analyzer.polarity_scores(text)
-    sentiment = 1 if scores['pos'] > 0 else 0
+    # sentiment = 1 if scores['pos'] > 0 else 0
 
-    return sentiment
+    return scores['compound']
