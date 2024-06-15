@@ -20,7 +20,7 @@ actions = ActionChains(driver)
 # Resusable Vars
 scroll_page_cmd = "window.scrollTo(0, document.body.scrollHeight/ 5);"
 page_height = "return document.body.scrollHeight"
-item_target_count = 2 
+item_target_count = 20 
 counter = 0
 
 

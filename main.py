@@ -5,13 +5,15 @@ import matplotlib.pyplot as plt
 # This is aggregated sentiment scores grouped by interview...
 data = pd.read_csv('./data/interview_sentiments.csv')
 
+
 plt.figure(figsize=(10, 6))
 
 hit_plot = sns.histplot(
     data=data, 
     x='sentiment',
     kde=True,
-    bins=30,
+    bins=5,
+    line_kws={'color' : 'blue', 'lw': 5, 'ls': ':'},
     color='skyblue'
 )
 

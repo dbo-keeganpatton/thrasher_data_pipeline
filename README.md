@@ -3,10 +3,10 @@
 
 ## Purpose
 Extracts Q&A text from interview articles on [Thrashermagazine.com](https://www.thrashermagazine.com/articles-and-interviews/). This text is placed
-into a local Postgres database and further transforms through two DBT models. These models
+into a local Postgres database and further transformed through two DBT models. These models
 prep the data for langauge processing by removing punctuation and single instances of letters.
 The prepped data is then extracted and processed to remove stop words and prep for tokenization.
-Using [NLTK](https://www.nltk.org/) tokens are then evaluated for sentiment using the `SentimentIntensityAnalyzer` method 
+Using [NLTK](https://www.nltk.org/), tokens are then evaluated for sentiment using the `SentimentIntensityAnalyzer` method 
 and assigned a value ranging -1 to 1. This data is aggregated to an average of all sentiment values 
 contained between questions and answers in the interview.
 
