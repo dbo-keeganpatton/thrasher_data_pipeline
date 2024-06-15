@@ -2,7 +2,7 @@
 
 
 ## Data Pipeline Structure
-[dataflow]('./images/dataFlow.png')
+![dataflow]('./images/dataFlow.png')
 
 ## Purpose
 Extracts Q&A text from interview articles on [Thrashermagazine.com](https://www.thrashermagazine.com/articles-and-interviews/). This text is placed
@@ -26,5 +26,5 @@ contained between questions and answers in the interview.
 
 
 ## Airflow Dag
-[airflow_dag]('./images/dag.png')
+![airflow_dag]('./images/dag.png')
 
