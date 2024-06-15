@@ -29,3 +29,6 @@ contained between questions and answers in the interview.
 ## Airflow Dag
 ![airflow_dag](images/dag.png)
 
+
+## Sentiment Distribution
+![sentimentHist](images/SentimentHistogram.png)
