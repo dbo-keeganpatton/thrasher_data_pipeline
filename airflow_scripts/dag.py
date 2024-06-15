@@ -6,6 +6,8 @@ sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/airflow_sc
 from transform import transform_func 
 from orm import create_func
 from load import load_func
+from sentiment import create_sentiment
+from agg import summarize_sentiment
 
 # Airflow 
 from airflow.models import DAG
@@ -65,8 +67,16 @@ def load():
 def dbt_run():
     return "pwd && cd ${AIRFLOW_HOME} && cd projects/python_projects/thrasher_site/interviews/ && dbt run"
 
+@task(task_id='sentiment', dag=dag)
+def sentiment():
+    create_sentiment()
+
+@task(task_id='summarize', dag=dag)
+def agg_sentiment():
+    summarize_sentiment()
+
 
 ############
 #   Flow   #
 ############
-extract() >> transform() >> create_table() >> load() >> dbt_run()
+extract() >> transform() >> create_table() >> load() >> dbt_run() >> sentiment() >> agg_sentiment()

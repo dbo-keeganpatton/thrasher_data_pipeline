@@ -20,7 +20,7 @@ actions = ActionChains(driver)
 # Resusable Vars
 scroll_page_cmd = "window.scrollTo(0, document.body.scrollHeight/ 5);"
 page_height = "return document.body.scrollHeight"
-item_target_count = 20
+item_target_count = 2 
 counter = 0
 
 
@@ -80,5 +80,5 @@ while counter < item_target_count:
 # Data Prep for ORM #
 #####################
 df = pd.DataFrame(articles_data)
-df.to_csv('./data/data.csv')
+df.to_csv('/home/eyelady/projects/python_projects/thrasher_site/data/data.csv')
 driver.close()

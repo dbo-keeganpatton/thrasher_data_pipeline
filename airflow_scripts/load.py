@@ -2,10 +2,14 @@ import pandas as pd
 from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy.orm import sessionmaker
 import json
+import sys
 import os
 
+sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/')
+
+
 def load_func():
-    df = pd.read_csv('./data/cleaned_data.csv')
+    df = pd.read_csv('/home/eyelady/projects/python_projects/thrasher_site/data/cleaned_data.csv')
 
     # Credential Management
     with open('./secrets/db_creds.json', 'r') as file:
@@ -55,8 +59,8 @@ def load_func():
     
     
     try:
-        if os.path.exists('./data/cleaned_data.csv'):
-            os.remove('./data/cleaned_data.csv')
+        if os.path.exists('/home/eyelady/projects/python_projects/thrasher_site/data/cleaned_data.csv'):
+            os.remove('/home/eyelady/projects/python_projects/thrasher_site/data/cleaned_data.csv')
     
     except FileNotFoundError as e:
         print(f'{e}')

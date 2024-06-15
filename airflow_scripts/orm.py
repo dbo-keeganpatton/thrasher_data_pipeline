@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine, Column, String, Integer, inspect
 from sqlalchemy.orm import declarative_base
 import json 
+import sys
+
+sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/')
 
 
 def create_func():

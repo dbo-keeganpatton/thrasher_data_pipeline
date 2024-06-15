@@ -8,7 +8,7 @@ sys.path.append('/home/eyelady/projects/python_projects/thrasher_site/')
 
 def transform_func():
 
-    df = pd.read_csv('./data/data.csv')
+    df = pd.read_csv('/home/eyelady/projects/python_projects/thrasher_site/data/data.csv')
     df = df.drop(['Unnamed: 0'], axis=1)
 
 
@@ -46,11 +46,11 @@ def transform_func():
 
 
     # Stage for ORM
-    df.to_csv('./data/cleaned_data.csv')
+    df.to_csv('/home/eyelady/projects/python_projects/thrasher_site/data/cleaned_data.csv')
     
     try:
-        if os.path.exists('./data/data.csv'): 
-            os.remove('./data/data.csv')
+        if os.path.exists('/home/eyelady/projects/python_projects/thrasher_site/data/data.csv'): 
+            os.remove('/home/eyelady/projects/python_projects/thrasher_site/data/data.csv')
     except FileNotFoundError as e:
         print(f'{e}')
         pass
